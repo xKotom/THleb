@@ -4,7 +4,7 @@ from django.db import models
 
 class User(AbstractUser):
     nickname = models.CharField('Имя или псевдоним', max_length=100, blank=True)
-    card_number = models.CharField('Номер клубной карты', max_length=50, unique=True)
+    card_number = models.CharField('Номер клубной карты', max_length=50, unique=True, blank=True, null=True)
     date_of_birth = models.DateField('Дата рождения', null=True, blank=True)
     photo = models.ImageField('Фото', upload_to='photos/', null=True, blank=True)
     bio = models.TextField('О себе', blank=True)

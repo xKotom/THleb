@@ -40,6 +40,26 @@
             </form>
         </section>
 
+        <section class="profile__card card">
+            <h2>Клубная карта</h2>
+            {% if user.card_number %}
+            <p>Номер карты: <strong>{{ user.card_number }}</strong></p>
+            {% else %}
+            <p>Клубная карта не привязана.</p>
+            {% endif %}
+            <form method="post" action="{% url 'save_card' %}" class="form">
+                {% csrf_token %}
+                {% for field in card_form %}
+                <div class="form__field">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}
+                </div>
+                {% endfor %}
+                <button type="submit" class="btn btn--secondary">{% if user.card_number %}Изменить{% else %}Привязать карту{% endif %}</button>
+            </form>
+        </section>
+
         <section class="profile__bonuses card">
             <h2>Бонусы</h2>
             <p class="profile__points">{{ user.bonus_points }} баллов</p>

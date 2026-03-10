@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
-from .forms import RegisterForm, ProfileForm, TagForm
+from .forms import RegisterForm, ProfileForm, TagForm, CardForm
 from .models import ProfileTag, Event
 
 
@@ -32,12 +32,15 @@ def profile(request):
         'tags': ', '.join(t.tag for t in request.user.tags.all())
     })
 
+    card_form = CardForm(instance=request.user)
+
     events = Event.objects.filter(date__gte=timezone.now())
     registered_events = request.user.event_registrations.values_list('event_id', flat=True)
 
     return render(request, 'accounts/profile.html', {
         'form': form,
         'tag_form': tag_form,
+        'card_form': card_form,
         'purchases': request.user.purchases.all()[:10],
         'events': events,
         'registered_events': list(registered_events),
@@ -54,6 +57,15 @@ def save_tags(request):
             request.user.tags.all().delete()
             for tag in tags:
                 ProfileTag.objects.create(user=request.user, tag=tag)
+    return redirect('profile')
+
+
+@login_required
+def save_card(request):
+    if request.method == 'POST':
+        form = CardForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
     return redirect('profile')
 
 

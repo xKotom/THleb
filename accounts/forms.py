@@ -7,7 +7,8 @@ class RegisterForm(UserCreationForm):
     card_number = forms.CharField(
         label='Номер клубной карты',
         max_length=50,
-        help_text='Выдаётся после трёх покупок в пекарне.',
+        required=False,
+        help_text='Выдаётся после трёх покупок в пекарне. Можно добавить позже в личном кабинете.',
     )
     nickname = forms.CharField(label='Имя или псевдоним', max_length=100)
 
@@ -22,6 +23,18 @@ class ProfileForm(forms.ModelForm):
         fields = ['nickname', 'date_of_birth', 'photo', 'bio']
         widgets = {
             'date_of_birth': forms.DateInput(attrs={'type': 'date'}),
+        }
+
+
+class CardForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['card_number']
+        labels = {
+            'card_number': 'Номер клубной карты',
+        }
+        help_texts = {
+            'card_number': 'Выдаётся после трёх покупок в пекарне.',
         }
 
 

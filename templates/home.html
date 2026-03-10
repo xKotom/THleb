@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Тёплый хлеб — Главная{% endblock %}
+
+{% block content %}
+<div class="home">
+    <h1 class="home__title">Тёплый хлеб</h1>
+    <p class="home__subtitle">Сообщество нашей пекарни</p>
+
+    <div class="home__sections">
+        <a href="{% url 'people_list' %}" class="home__card home__card--community">
+            <h2>С кем разделить тёплый хлеб</h2>
+            <p>Найди людей по интересам</p>
+        </a>
+
+        <a href="{% url 'feedback_home' %}" class="home__card home__card--feedback">
+            <h2>Влияйте на хлеб</h2>
+            <p>Жалобы и похвалы</p>
+        </a>
+
+        <a href="{% url 'neighborhood' %}" class="home__card home__card--neighborhood">
+            <h2>По соседству</h2>
+            <p>Чат сообщества</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Аккаунт{% endblock %}
+
+{% block content %}
+<div class="profile">
+    <h1>Аккаунт</h1>
+
+    <div class="profile__grid">
+        <section class="profile__info card">
+            <h2>Личные данные</h2>
+            <form method="post" enctype="multipart/form-data" class="form">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="form__field">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                </div>
+                {% endfor %}
+                <button type="submit" class="btn btn--primary">Сохранить</button>
+            </form>
+
+            {% if user.photo %}
+            <img src="{{ user.photo.url }}" alt="Фото" class="profile__photo">
+            {% endif %}
+        </section>
+
+        <section class="profile__tags card">
+            <h2>Интересы</h2>
+            <form method="post" action="{% url 'save_tags' %}" class="form">
+                {% csrf_token %}
+                {% for field in tag_form %}
+                <div class="form__field">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}
+                </div>
+                {% endfor %}
+                <button type="submit" class="btn btn--secondary">Сохранить теги</button>
+            </form>
+        </section>
+
+        <section class="profile__bonuses card">
+            <h2>Бонусы</h2>
+            <p class="profile__points">{{ user.bonus_points }} баллов</p>
+        </section>
+
+        <section class="profile__purchases card">
+            <h2>История покупок</h2>
+            {% if purchases %}
+            <ul>
+                {% for p in purchases %}
+                <li>{{ p.product }} — {{ p.price }} руб. <small>({{ p.date|date:"d.m.Y" }})</small></li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>Покупок пока нет.</p>
+            {% endif %}
+        </section>
+
+        <section class="profile__events card">
+            <h2>Календарь мероприятий</h2>
+            {% if events %}
+            <ul>
+                {% for event in events %}
+                <li>
+                    <strong>{{ event.name }}</strong> — {{ event.date|date:"d.m.Y H:i" }}
+                    <br><small>{{ event.description }}</small>
+                    {% if event.id in registered_events %}
+                    <span class="badge">Вы записаны</span>
+                    {% else %}
+                    <a href="{% url 'register_event' event.id %}" class="btn btn--small">Записаться</a>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>Мероприятий пока нет.</p>
+            {% endif %}
+        </section>
+    </div>
+
+    <a href="{% url 'logout' %}" class="btn btn--outline">Выйти</a>
+</div>
+{% endblock %}

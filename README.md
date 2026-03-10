@@ -33,7 +33,7 @@ python manage.py runserver
 ├── community/       # Community app
 ├── feedback/        # Feedback app
 ├── neighborhood/    # Neighborhood app
-├── kottom/          # Django project settings
+├── main/            # Django project settings
 ├── static/          # Static files
 ├── templates/       # HTML templates
 ├── manage.py

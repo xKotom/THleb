@@ -31,7 +31,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'kottom.urls'
+ROOT_URLCONF = 'main.urls'
 
 TEMPLATES = [
     {
@@ -48,7 +48,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'kottom.wsgi.application'
+WSGI_APPLICATION = 'main.wsgi.application'
 
 DATABASES = {
     'default': {

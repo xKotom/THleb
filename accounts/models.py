@@ -10,6 +10,11 @@ class User(AbstractUser):
     bio = models.TextField('О себе', blank=True)
     bonus_points = models.IntegerField('Бонусы', default=0)
 
+    def save(self, *args, **kwargs):
+        if not self.card_number:
+            self.card_number = None
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.nickname or self.username
 

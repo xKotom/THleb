@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}С кем разделить тёплый хлеб{% endblock %}
+
+{% block content %}
+<div class="community">
+    <h1>С кем разделить тёплый хлеб</h1>
+
+    <div class="community__filters">
+        <a href="?mode=friends" class="btn {% if mode == 'friends' %}btn--primary{% else %}btn--outline{% endif %}">
+            Разделить фильтр
+        </a>
+        <a href="?mode=tinder" class="btn {% if mode == 'tinder' %}btn--primary{% else %}btn--outline{% endif %}">
+            Купить хлеб домой
+        </a>
+    </div>
+
+    {% if people %}
+    <div class="community__grid">
+        {% for person in people %}
+        <a href="{% url 'person_detail' person.id %}" class="community__card card">
+            {% if person.photo %}
+            <img src="{{ person.photo.url }}" alt="{{ person.nickname }}" class="community__photo">
+            {% else %}
+            <div class="community__avatar">{{ person.nickname|first|default:"?" }}</div>
+            {% endif %}
+            <h3>{{ person.nickname|default:person.username }}</h3>
+            {% if person.bio %}
+            <p class="community__bio">{{ person.bio|truncatewords:15 }}</p>
+            {% endif %}
+            <div class="community__tags">
+                {% for tag in person.tags.all %}
+                <span class="tag">{{ tag }}</span>
+                {% endfor %}
+            </div>
+            {% if person.match_count %}
+            <span class="badge">{{ person.match_count }} совпадений</span>
+            {% endif %}
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="community__empty">Пока нет анкет. Заполните свои интересы в профиле!</p>
+    {% endif %}
+</div>
+{% endblock %}

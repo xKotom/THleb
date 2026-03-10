@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}По соседству{% endblock %}
+
+{% block content %}
+<div class="neighborhood">
+    <h1>По соседству</h1>
+    <p>Присоединяйтесь к чату нашего сообщества!</p>
+
+    <div class="neighborhood__chat-preview card">
+        <div class="neighborhood__mockup">
+            <div class="neighborhood__msg neighborhood__msg--other">
+                <strong>Анна</strong>
+                <p>Всем привет! Кто завтра на дегустацию?</p>
+            </div>
+            <div class="neighborhood__msg neighborhood__msg--other">
+                <strong>Михаил</strong>
+                <p>Я буду! Говорят, новый ржаной будет</p>
+            </div>
+            <div class="neighborhood__msg neighborhood__msg--self">
+                <strong>Вы</strong>
+                <p>Тоже приду, до встречи!</p>
+            </div>
+        </div>
+
+        <p class="neighborhood__note">Чат доступен только участникам клуба.</p>
+
+        <a href="#" class="btn btn--primary btn--large" target="_blank" rel="noopener">
+            Перейти в Telegram чат
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,537 @@
+// Variables
+$color-primary: #c8553d;
+$color-primary-light: #e07b5f;
+$color-secondary: #f2cc8f;
+$color-bg: #faf3eb;
+$color-card: #ffffff;
+$color-text: #2d2d2d;
+$color-text-light: #6b6b6b;
+$color-border: #e8ddd0;
+$color-success: #588157;
+$color-danger: #c1292e;
+$radius: 12px;
+$shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+
+// Reset & Base
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: $color-bg;
+  color: $color-text;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-primary-light;
+  }
+}
+
+// Navbar
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: $color-card;
+  border-bottom: 1px solid $color-border;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  &__logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: $color-primary;
+  }
+
+  &__avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: $color-secondary;
+    color: $color-text;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+}
+
+// Content
+.content {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+// Messages
+.messages {
+  margin-bottom: 1.5rem;
+
+  &__item {
+    padding: 0.75rem 1rem;
+    border-radius: $radius;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+
+    &--success { background: lighten($color-success, 40%); color: $color-success; }
+    &--error { background: lighten($color-danger, 40%); color: $color-danger; }
+    &--info { background: lighten($color-secondary, 20%); color: $color-text; }
+  }
+}
+
+// Card
+.card {
+  background: $color-card;
+  border-radius: $radius;
+  padding: 1.5rem;
+  box-shadow: $shadow;
+  border: 1px solid $color-border;
+}
+
+// Buttons
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  border-radius: $radius;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+  text-align: center;
+
+  &--primary {
+    background: $color-primary;
+    color: #fff;
+
+    &:hover {
+      background: $color-primary-light;
+      color: #fff;
+    }
+  }
+
+  &--secondary {
+    background: $color-secondary;
+    color: $color-text;
+
+    &:hover { background: darken($color-secondary, 8%); }
+  }
+
+  &--outline {
+    background: transparent;
+    border-color: $color-primary;
+    color: $color-primary;
+
+    &:hover {
+      background: $color-primary;
+      color: #fff;
+    }
+  }
+
+  &--small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  &--large {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+  }
+}
+
+// Forms
+.form {
+  &__field {
+    margin-bottom: 1.2rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid $color-border;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: $color-card;
+      transition: border-color 0.2s;
+
+      &:focus {
+        outline: none;
+        border-color: $color-primary;
+      }
+    }
+
+    small {
+      display: block;
+      margin-top: 0.25rem;
+      color: $color-text-light;
+      font-size: 0.8rem;
+    }
+  }
+
+  &__error {
+    display: block;
+    color: $color-danger;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }
+}
+
+// Auth pages
+.auth {
+  max-width: 420px;
+  margin: 2rem auto;
+
+  h1 { margin-bottom: 0.5rem; }
+
+  &__hint {
+    color: $color-text-light;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  &__link {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+}
+
+// Home
+.home {
+  text-align: center;
+
+  &__title {
+    font-size: 2.5rem;
+    color: $color-primary;
+    margin-bottom: 0.25rem;
+  }
+
+  &__subtitle {
+    color: $color-text-light;
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  &__sections {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  &__card {
+    display: block;
+    padding: 2.5rem 2rem;
+    border-radius: $radius;
+    color: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: left;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      color: #fff;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      opacity: 0.9;
+      font-size: 0.95rem;
+    }
+
+    &--community { background: $color-primary; }
+    &--feedback { background: $color-success; }
+    &--neighborhood { background: #3d5a80; }
+    &--complaint { background: $color-danger; }
+    &--praise { background: $color-success; }
+  }
+}
+
+// Profile
+.profile {
+  h1 { margin-bottom: 1.5rem; }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+
+    @media (max-width: 700px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__photo {
+    max-width: 150px;
+    border-radius: $radius;
+    margin-top: 1rem;
+  }
+
+  &__points {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $color-primary;
+  }
+
+  section h2 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+
+  ul {
+    list-style: none;
+
+    li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid $color-border;
+
+      &:last-child { border-bottom: none; }
+    }
+  }
+}
+
+// Badge
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  background: $color-success;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+// Tag
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  background: lighten($color-secondary, 10%);
+  color: $color-text;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin: 0.15rem;
+}
+
+// Community
+.community {
+  h1 { margin-bottom: 1rem; }
+
+  &__filters {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+
+  &__card {
+    display: block;
+    text-align: center;
+    transition: transform 0.2s;
+    color: $color-text;
+
+    &:hover {
+      transform: translateY(-3px);
+      color: $color-text;
+    }
+
+    h3 { margin: 0.75rem 0 0.25rem; }
+  }
+
+  &__photo {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  &__avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: $color-secondary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  &__bio {
+    color: $color-text-light;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__tags {
+    margin-top: 0.5rem;
+  }
+
+  &__empty {
+    text-align: center;
+    color: $color-text-light;
+    padding: 3rem;
+  }
+}
+
+// Person Detail
+.person-detail {
+  &__card {
+    max-width: 500px;
+    margin: 1.5rem auto;
+    text-align: center;
+
+    h1 { margin: 1rem 0 0.5rem; }
+  }
+
+  &__photo {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  &__avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: $color-secondary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+  &__age {
+    color: $color-text-light;
+    font-size: 0.9rem;
+  }
+
+  &__bio {
+    margin: 1rem 0;
+    line-height: 1.7;
+  }
+
+  &__tags {
+    margin-top: 1rem;
+  }
+}
+
+// Feedback
+.feedback-home {
+  text-align: center;
+
+  h1 { margin-bottom: 0.5rem; }
+
+  p { color: $color-text-light; margin-bottom: 2rem; }
+
+  &__buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+
+    @media (max-width: 500px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.feedback-form {
+  max-width: 500px;
+  margin: 0 auto;
+
+  h1 { margin: 1rem 0 1.5rem; }
+}
+
+.feedback-thanks {
+  text-align: center;
+  padding: 3rem 0;
+
+  h1 { margin-bottom: 0.5rem; }
+  p { color: $color-text-light; margin-bottom: 2rem; }
+}
+
+// Neighborhood
+.neighborhood {
+  text-align: center;
+
+  h1 { margin-bottom: 0.5rem; }
+  > p { color: $color-text-light; margin-bottom: 2rem; }
+
+  &__chat-preview {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  &__mockup {
+    margin-bottom: 1.5rem;
+  }
+
+  &__msg {
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+    max-width: 80%;
+
+    strong {
+      display: block;
+      font-size: 0.8rem;
+      margin-bottom: 0.2rem;
+    }
+
+    p { font-size: 0.9rem; }
+
+    &--other {
+      background: lighten($color-border, 5%);
+    }
+
+    &--self {
+      background: lighten($color-secondary, 10%);
+      margin-left: auto;
+    }
+  }
+
+  &__note {
+    text-align: center;
+    color: $color-text-light;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .btn { display: block; text-align: center; }
+}

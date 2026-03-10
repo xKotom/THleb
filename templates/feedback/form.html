@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="feedback-form">
+    <a href="{% url 'feedback_home' %}" class="btn btn--outline btn--small">&larr; Назад</a>
+    <h1>{{ title }}</h1>
+
+    <form method="post" class="form">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form__field">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% for error in field.errors %}<span class="form__error">{{ error }}</span>{% endfor %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn--primary">Отправить</button>
+    </form>
+</div>
+{% endblock %}

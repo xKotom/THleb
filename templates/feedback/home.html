@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Влияйте на хлеб{% endblock %}
+
+{% block content %}
+<div class="feedback-home">
+    <h1>Влияйте на тёплый хлеб</h1>
+    <p>Ваше мнение важно для нас!</p>
+
+    <div class="feedback-home__buttons">
+        <a href="{% url 'feedback_complaint' %}" class="home__card home__card--complaint">
+            <h2>Хочу пожаловаться</h2>
+            <p>Расскажите, что пошло не так</p>
+        </a>
+
+        <a href="{% url 'feedback_praise' %}" class="home__card home__card--praise">
+            <h2>Расскажу о хорошем</h2>
+            <p>Оставьте благодарность</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}{{ person.nickname|default:person.username }}{% endblock %}
+
+{% block content %}
+<div class="person-detail">
+    <a href="{% url 'people_list' %}" class="btn btn--outline btn--small">&larr; Назад</a>
+
+    <div class="person-detail__card card">
+        {% if person.photo %}
+        <img src="{{ person.photo.url }}" alt="{{ person.nickname }}" class="person-detail__photo">
+        {% else %}
+        <div class="person-detail__avatar">{{ person.nickname|first|default:"?" }}</div>
+        {% endif %}
+
+        <h1>{{ person.nickname|default:person.username }}</h1>
+
+        {% if person.date_of_birth %}
+        <p class="person-detail__age">Дата рождения: {{ person.date_of_birth|date:"d.m.Y" }}</p>
+        {% endif %}
+
+        {% if person.bio %}
+        <p class="person-detail__bio">{{ person.bio }}</p>
+        {% endif %}
+
+        <div class="person-detail__tags">
+            {% for tag in person.tags.all %}
+            <span class="tag">{{ tag }}</span>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

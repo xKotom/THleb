@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Спасибо!{% endblock %}
+
+{% block content %}
+<div class="feedback-thanks">
+    <h1>Спасибо за ваш отзыв!</h1>
+    <p>Мы ценим ваше мнение.</p>
+    <a href="{% url 'home' %}" class="btn btn--primary">На главную</a>
+</div>
+{% endblock %}
